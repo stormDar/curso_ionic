@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AuthenticateService } from '../services/authenticate.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -20,14 +22,16 @@ export class LoginPage implements OnInit {
     ]
   };
 
-  constructor(private formBuilder: FormBuilder) { 
+  errorMessage: string = "";
+  
+
+  constructor(private formBuilder: FormBuilder, private authService: AuthenticateService, private navCtrl: NavController) { 
     this.loginForm = this.formBuilder.group({
       email: new FormControl("", Validators.compose([
         Validators.required,
         Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
       ])
       ),
-
       password: new FormControl("", Validators.compose([
         Validators.required,
         Validators.minLength(5)
@@ -40,7 +44,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {}
 
   loginUser(credentials){
-    console.log(credentials)
-  }
+    this.authService.loginUser(credentials).then(res => {
+      this.errorMessage = "";
+      this.navCtrl.navigateForward("/home");
+    });
+  } 
 
 }
