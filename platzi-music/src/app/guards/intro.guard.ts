@@ -11,7 +11,7 @@ export class IntroGuard implements CanActivate {
   constructor (private storage: Storage, private router: Router) {}
   async canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Promise <boolean> {
       const isIntroShowed = await this.storage.get('isIntroShowed');
       if (isIntroShowed){
         return true;

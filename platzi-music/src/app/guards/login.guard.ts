@@ -11,7 +11,7 @@ export class LoginGuard implements CanActivate {
   constructor (private storage: Storage, private router: Router) {}
   async canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): Promise <boolean> {
       const isUserLoggedIn = await this.storage.get('isUserLoggedIn');
       if (isUserLoggedIn){
         return true;
