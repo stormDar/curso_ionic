@@ -12,7 +12,7 @@ export class HomePage {
   slideOps = {
     initialSlide: 2,
     slidesPerView: 4,
-    denteredSlides: true,
+    centeredSlides: true,
     speed: 400
   };
   
