@@ -8,6 +8,13 @@ import { Component } from '@angular/core';
 
 export class HomePage {
   
+  artists = [{}, {}, {}, {}, {}, {}, {}, {}];
+  slideOps = {
+    initialSlide: 2,
+    slidesPerView: 4,
+    denteredSlides: true,
+    speed: 400
+  };
   
   constructor() {}
 
